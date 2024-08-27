@@ -1,9 +1,8 @@
-name = 'nikita'
-print(name , type(name))
-age= 29
-print(age,type(name))
-age = (age+1)
-print(age, type(age+1))
+name = "Nikita"
+print(f'{name=}')
+age = 29
+print(f'{age=}')
+age += 1
+print(f'{age=}')
 is_student = True
-print(is_student, type(True))
-print("is_student:True")
+print(f'{is_student=}')
