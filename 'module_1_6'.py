@@ -1,13 +1,16 @@
-my_dict = {'nikita': 1995,'alex':2003,'albina':1992}
-my_dict['nikita'] = 1995
-my_dict['alex'] = 2003
-my_dict.update({'albina': 1992,
-                'elvin':2015})
-del my_dict['alex']
-print(my_dict.get('anton'))
-print(my_dict)
-print(my_dict['nikita'])
+my_dict = {"Nikita": 29, "albina": 32, "elvin": 5, "busia": 10}
+print(f'Dict: {my_dict}')
+print(f'Existing value: {my_dict["albina"]}')
+print(f'Not existing value: {my_dict.get("Otis")}')
+my_dict.update({"alex": 9,
+                "ben": 25})
+print(f'Deleted value: {my_dict.pop("busia")}')
+print(f'Modified dictionary: {my_dict}')
 
-
-my_set=(1,2,3,4,5,1,2,3,4)
-print(my_set)
+# Множество
+print('_'*40)
+my_set = {29, "Cent", 3.1415, "ть"}
+print(f'Set: {my_set}')
+my_set.update(["Cent", "RU", 38])
+my_set.remove(38)
+print(f'Modified set: {my_set}')
