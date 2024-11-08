@@ -1,6 +1,6 @@
 import telebot;
 from telebot import types
-bot = telebot.TeleBot('7881986674:AAHToIJneo0T9PbgkUn3Y6CMA77faPshgUc')
+bot = telebot.TeleBot('Token')
 
 
 name = '';
