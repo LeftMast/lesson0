@@ -2,7 +2,7 @@
 
 import unittest
 import logging
-from runner import Runner
+from runner import Runner, Tournament
 
 # Настройка логирования
 logging.basicConfig(
@@ -16,22 +16,38 @@ logging.basicConfig(
 
 class RunnerTest(unittest.TestCase):
 
-    def test_walk(self):
+    def test_runner_initialization(self):
         try:
-            runner = Runner("John", -5)  # Передаем отрицательное значение
-        except ValueError as e:
-            logging.warning("Неверная скорость для Runner: %s", e)
-        else:
-            logging.info('"test_walk" выполнен успешно')
+            runner = Runner("Вася", 10)
+            logging.info('"test_runner_initialization" выполнен успешно')
+        except Exception as e:
+            logging.warning("Ошибка при инициализации Runner: %s", e)
 
-    def test_run(self):
-        try:
-            runner = Runner(123, 10)  # Передаем неверный тип
-        except TypeError as e:
-            logging.warning("Неверный тип данных для объекта Runner: %s", e)
-        else:
-            logging.info('"test_run" выполнен успешно')
+        with self.assertRaises(TypeError):
+            Runner(123, 10)  # Неверный тип имени
+
+        with self.assertRaises(ValueError):
+            Runner("Вася", -5)  # Неверная скорость
+
+    def test_runner_methods(self):
+        runner = Runner("Илья", 5)
+        runner.run()
+        self.assertEqual(runner.distance, 10)  # 5 * 2
+        runner.walk()
+        self.assertEqual(runner.distance, 15)  # 10 + 5
+
+    def test_tournament(self):
+        runner1 = Runner("Вася", 10)
+        runner2 = Runner("Илья", 5)
+        tournament = Tournament(101, runner1, runner2)
+
+        finishers = tournament.start()
+        logging.info('"test_tournament" выполнен успешно')
+
+        self.assertIn(1, finishers)  # Убедимся, что есть финиширующий
+        self.assertIn(2, finishers)  # Убедимся, что есть второй финиширующий
 
 
 if __name__ == '__main__':
     unittest.main()
+
