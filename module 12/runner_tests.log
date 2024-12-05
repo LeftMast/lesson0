@@ -1,1 +1,1 @@
-WARNING: Неверный тип данных для объекта Runner: Runner.__init__() takes 2 positional arguments but 3 were given
+WARNING: Ошибка при инициализации Runner: Runner.__init__() takes 2 positional arguments but 3 were given
