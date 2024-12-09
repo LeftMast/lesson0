@@ -29,6 +29,14 @@ button_info = KeyboardButton('Информация')
 keyboard.add(button_calculate, button_info)
 
 @dp.message_handler(commands=['start'])
+async def start_command(message: types.Message):
+    await message.answer("Привет! Я бот, помогающий твоему здоровью.")
+
+@dp.message_handler(lambda message: message.text.lower() == "привет")
+async def greet_user(message: types.Message):
+    await message.answer("Введите команду /start, чтобы начать общение.")
+    
+@dp.message_handler(commands=['start'])
 async def start(message: types.Message):
     await message.answer("Привет! Нажмите 'Рассчитать', чтобы начать вычисление нормы калорий.", reply_markup=keyboard)
 
