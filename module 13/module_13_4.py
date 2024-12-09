@@ -23,9 +23,12 @@ class UserState(StatesGroup):
     weight = State()
 
 @dp.message_handler(commands=['start'])
-async def start(message: types.Message):
-    # Отправляем приветственное сообщение в чат
-    await message.answer("Привет! Я бот, помогающий твоему здоровью. Введите команду /start, чтобы начать общение.")
+async def start_command(message: types.Message):
+    await message.answer("Привет! Я бот, помогающий твоему здоровью.")
+
+@dp.message_handler(lambda message: message.text.lower() == "привет")
+async def greet_user(message: types.Message):
+    await message.answer("Введите команду /start, чтобы начать общение.")
 
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
