@@ -14,14 +14,12 @@ storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
 @dp.message_handler(commands=['start'])
-async def start(message: types.Message):
-    # Отправляем приветственное сообщение в чат
-    await message.answer("Привет! Я бот, помогающий твоему здоровью. Введите команду /start, чтобы начать общение.")
+async def start_command(message: types.Message):
+    await message.answer("Привет! Я бот, помогающий твоему здоровью.")
 
-@dp.message_handler()
-async def all_messages(message: types.Message):
-    # Отправляем ответ в чат, используя текст сообщения пользователя
-    await message.answer(f"Он мне ответил! Вы написали: {message.text}")
+@dp.message_handler(lambda message: message.text.lower() == "привет")
+async def greet_user(message: types.Message):
+    await message.answer("Введите команду /start, чтобы начать общение.")
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
