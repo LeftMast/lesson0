@@ -46,12 +46,6 @@ async def greet_user(message: types.Message):
 async def all_messages(message: types.Message):
     await message.answer("Пожалуйста, используйте кнопки 'Рассчитать' или 'Информация'.")
 
-
-@dp.message_handler(commands=['start'])
-async def start(message: types.Message):
-    await message.answer("Привет! Нажмите 'Рассчитать', чтобы начать вычисление нормы калорий.",
-                         reply_markup=keyboard)
-
 @dp.message_handler(lambda message: message.text == 'Рассчитать')
 async def main_menu(message: types.Message):
     await message.answer("Выберите опцию:", reply_markup=inline_keyboard)
