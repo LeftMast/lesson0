@@ -36,11 +36,16 @@ inline_keyboard.add(button_calories, button_formulas)
 
 @dp.message_handler(commands=['start'])
 async def start_command(message: types.Message):
-    await message.answer("Привет! Я бот, помогающий твоему здоровью.")
+    await message.answer("Привет! Я бот, помогающий твоему здоровью.", reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text.lower() == "привет")
 async def greet_user(message: types.Message):
     await message.answer("Введите команду /start, чтобы начать общение.")
+
+@dp.message_handler(lambda message: message.text not in ['Рассчитать', 'Информация'])
+async def all_messages(message: types.Message):
+    await message.answer("Пожалуйста, используйте кнопки 'Рассчитать' или 'Информация'.")
+
 
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
@@ -99,3 +104,4 @@ async def send_info(message: types.Message):
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
+
