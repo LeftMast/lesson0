@@ -101,6 +101,10 @@ async def send_calories(message: types.Message, state: FSMContext):
 @dp.message_handler(lambda message: message.text == 'Информация')
 async def send_info(message: types.Message):
     await message.answer("Это бот для расчета нормы калорий. Нажмите 'Рассчитать', чтобы начать.")
+# Обработчик для всех остальных сообщений
+@dp.message_handler()
+async def handle_all_messages(message: types.Message):
+    await message.answer("Извините, я не понимаю. Пожалуйста, введите команду /start или напишите 'Calories'.")
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
